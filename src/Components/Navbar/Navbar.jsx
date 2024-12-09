@@ -5,19 +5,19 @@ import Img1 from "../../assets/eng.webp";
 import Img2 from "../../assets/rw.png";
 
 const Navbar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Tracks the dropdown visibility
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     code: "Eng",
     img: Img1,
     name: "English",
-  }); // Tracks the selected language
+  });
 
   const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false); // Close dropdown when clicking outside
+        setIsDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -25,21 +25,19 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen); // Toggle dropdown visibility
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
   const selectLanguage = (code, img, name) => {
-    setSelectedLanguage({ code, img, name }); // Update selected language
-    setIsDropdownOpen(false); // Close dropdown after selection
+    setSelectedLanguage({ code, img, name });
+    setIsDropdownOpen(false);
   };
 
-  // List of languages with their respective details
   const languages = [
     { code: "Eng", img: Img1, name: "Engl" },
     { code: "Kiny", img: Img2, name: "Kiny" },
   ];
 
-  // Filter out the currently selected language
   const unselectedLanguages = languages.filter(
     (language) => language.code !== selectedLanguage.code
   );
@@ -69,7 +67,11 @@ const Navbar = () => {
           </li>
           <li className="nav-item relative" ref={dropdownRef}>
             <button
-              className="nav-link  bg-purple-600 py-2 px-7 text-white rounded-full flex items-center gap-5"
+              className={`nav-link bg-purple-600 py-2 px-7 text-white flex items-center gap-5 ${
+                selectedLanguage.code === "Eng"
+                  ? "rounded-tl-3xl rounded-tr-3xl"
+                  : "rounded-bl-md rounded-br-md"
+              }`}
               onClick={toggleDropdown}
               aria-expanded={isDropdownOpen}
             >
@@ -81,12 +83,12 @@ const Navbar = () => {
               {selectedLanguage.code}
             </button>
             {isDropdownOpen && (
-              <div className="absolute left-0  bg-purple-600 py-1 px-4 border  rounded-full ">
+              <div className="absolute left-0 bg-purple-600 py-1 px-4 border rounded-full">
                 {unselectedLanguages.map((language) => (
                   <a
                     key={language.code}
                     href={`#${language.code}`}
-                    className="flex items-center gap-5 py-1 px-2 "
+                    className="flex items-center gap-5 py-1 px-2"
                     onClick={() =>
                       selectLanguage(language.code, language.img, language.name)
                     }
@@ -94,7 +96,7 @@ const Navbar = () => {
                     <img
                       src={language.img}
                       alt={language.name}
-                      className="inline-block h-8 w-8 "
+                      className="inline-block h-8 w-8"
                     />
                     {language.name}
                   </a>
