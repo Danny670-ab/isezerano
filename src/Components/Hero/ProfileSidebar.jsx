@@ -1,7 +1,7 @@
 import React from 'react'
 import Img1 from "../../assets/shous1.png"
 
-const Hero = () => {
+const ProfileSidebar = () => {
   return (
    
     <div className=' bg-gradient-to-t from-purple-300 to-blue-500 w-72  h-80 rounded-2xl ml-10 text-white mt-8'>
@@ -33,4 +33,6 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default ProfileSidebar
+
+
