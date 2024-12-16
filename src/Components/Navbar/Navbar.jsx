@@ -36,8 +36,8 @@ const Navbar = ({ handlequestionPopup }) => {
   };
 
   const languages = [
-    { code: "Eng", img: Img1, name: "English" },
-    { code: "Kiny", img: Img2, name: "Kinyarwanda" },
+    { code: "Eng", img: Img1, name: "Engl" },
+    { code: "Kiny", img: Img2, name: "Kiny" },
   ];
 
   const unselectedLanguages = languages.filter(
@@ -45,7 +45,7 @@ const Navbar = ({ handlequestionPopup }) => {
   );
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen ml-10 mb-10 ">
       {/* Sidebar Section */}
       <aside className="flex flex-col">
         {/* Title */}
@@ -64,7 +64,7 @@ const Navbar = ({ handlequestionPopup }) => {
       </aside>
 
       {/* Main Content Section */}
-      <div className="flex flex-col  flex-grow mr-40">
+      <div className="flex flex-col  flex-grow mr-16">
         {/* Navigation Bar */}
         <nav className="flex items-center justify-end  px-10 py-4">
           <ul className="flex gap-14 items-center mt-5">
@@ -86,7 +86,7 @@ const Navbar = ({ handlequestionPopup }) => {
             </li>
             <li className="nav-item relative" ref={dropdownRef}>
               <button
-                className={`nav-link bg-purple-600 py-3 px-6 text-white flex items-center justify-center gap-2 rounded-full`}
+                className={`nav-link bg-purple-600 py-3 px-7 text-white flex items-center justify-center gap-2 rounded-full`}
                 onClick={toggleDropdown}
                 aria-expanded={isDropdownOpen}
               >
@@ -132,11 +132,11 @@ const Navbar = ({ handlequestionPopup }) => {
         </nav>
 
         {/* Content Section */}
-        <div className="flex-grow p-6">
+        <div className="flex-grow ">
           {/* Additional content can go here */}
           <div className="flex-grow ml-16">
              <h2 className="text-2xl font-bold mt-4 ">Presence Details</h2>
-             <div>
+             <div className="ml-3">
               <button className="px-4 py-2 mt-5 border border-purple-700 rounded-full text-purple-500">
                 Check Previous Date
               </button>
@@ -144,20 +144,21 @@ const Navbar = ({ handlequestionPopup }) => {
                 Attendance 63%
               </button>
               <button className="px-4 py-2 rounded-full border border-purple-700 text-white bg-purple-600 ml-5">
-                Coir Events
+                Choir Events
               </button>
              </div>
-             <table className="main-w-full divide-y divide-gray-200 mt-5 ">
-              <thead className="bg-gray-100 rounded gap-10 ">
+             <table className="w-full divide-y divide-gray-200 mt-5 border ">
+              <thead className="bg-gray-100  gap-10 ">
                 <tr>
-                  <th className="px-5 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Date</th>
+                
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Date</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Time</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Reason</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Punishment</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Punishment</th>
+                  <th className="px-10 py-3 ml-10 text-lef text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-gray-500">
+              <tbody className="bg-white  ">
               
                 {[
                   { date: "14/10/2024", reason: "On Time", punishment: "Good" },
@@ -169,8 +170,8 @@ const Navbar = ({ handlequestionPopup }) => {
                   { date: "20/10/2024", reason: "Late Arrival", punishment: "Neglect" },
                 ].map((record, index) => (
                   <tr key={index}>
-                    <td className="px-6 py-4  text-sm text-gray-500">{record.date}</td>
-                    <td className="px-6 py-4  text-sm text-gray-500">-</td>
+                    <td className="px-4 py-4  text-sm text-gray-500">{record.date}</td>
+                    <td className="px-8 py-4  text-sm text-gray-500">-</td>
                     <td className="px-6 py-4  text-sm text-gray-500">
                       <span className={
                         record.reason === "On Time" ? "text-green-800" :
@@ -179,9 +180,9 @@ const Navbar = ({ handlequestionPopup }) => {
                         {record.reason}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{record.punishment}</td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button className="text-[#4361ee] hover:text-[#3451dd]">Claim</button>
+                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{record.punishment}</td>
+                    <td className="px-8 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button className="bg-[#4361ee] text-white px-4 py-2 mr-10 rounded-full">Claim</button>
                     </td>
                   </tr>
                 ))}
