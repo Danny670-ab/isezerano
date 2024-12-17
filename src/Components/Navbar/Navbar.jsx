@@ -5,7 +5,6 @@ import Img1 from "../../assets/eng.webp";
 import Img2 from "../../assets/rw.png";
 import Img3 from "../../assets/question 1.png";
 import ProfileSidebar from "../Hero/ProfileSidebar";
-
 const Navbar = ({ handlequestionPopup }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
@@ -147,7 +146,7 @@ const Navbar = ({ handlequestionPopup }) => {
                 Choir Events
               </button>
              </div>
-             <table className="w-full divide-y divide-gray-200 mt-5 border ">
+             <table className="h-60 w-full divide-y divide-gray-200 mt-5 border ">
               <thead className="bg-gray-100  gap-10 ">
                 <tr>
                 
