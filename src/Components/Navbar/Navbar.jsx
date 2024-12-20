@@ -7,7 +7,7 @@ import Img3 from "../../assets/question 1.png";
 import ProfileSidebar from "../Hero/ProfileSidebar";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-const Navbar = ({ handlequestionPopup }) => {
+const Navbar = ({  handlequestionPopup }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
     code: "Eng",
@@ -80,6 +80,7 @@ const Navbar = ({ handlequestionPopup }) => {
               <button
                 className="nav-link bg-[#4361ee] py-3 px-4 text-white rounded-full flex items-center gap-4"
                 onClick={handleHomeClick}
+      
               >
                 <FontAwesomeIcon icon={faHouse} size="lg" /> Home
               </button>
@@ -158,9 +159,9 @@ const Navbar = ({ handlequestionPopup }) => {
                 Choir Events
               </button>
             </div>
-            <table className="h-50 w-full mt-5 border rounded-md mb-20">
+            <table className="h-50 w-full mt-5  border rounded-md mb-20">
               <thead className="bg-gray-300 gap-10">
-                <tr>
+                <tr className="relative ">
                   <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                     Date
                   </th>
@@ -173,7 +174,7 @@ const Navbar = ({ handlequestionPopup }) => {
                   <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                     Punishment
                   </th>
-                  <th className="px-10 py-3 ml-10 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                  <th className="px-20 py-3 mr-10 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -192,7 +193,7 @@ const Navbar = ({ handlequestionPopup }) => {
                     <td className="px-4 py-2 text-sm text-gray-500">
                       {record.date}
                     </td>
-                    <td className="px-4 py-2 text-sm text-gray-500">-</td>
+                    <td className="px-8 py-2 text-sm text-gray-500">-</td>
                     <td className="px-6 py-3 text-sm text-gray-500">
                       <span
                         className={

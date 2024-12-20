@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './Components/Navbar/Navbar';
-import Popup from './Components/Popup/Popup'; // Ensure Popup is imported
+import Popup from './Components/Popup/Popup';
 
 const App = () => {
-  const [questionPopup, setQuestionPopup] = React.useState(false);
+  const [questionPopup, setQuestionPopup] = useState(false);
+
+  const handleHomeClick = () => {
+    setShowComponents(false); // Hide components when Home button is clicked
+  };
 
   const toggleQuestionPopup = () => {
     setQuestionPopup(!questionPopup);
@@ -12,8 +16,11 @@ const App = () => {
 
   return (
     <div>
-      <Navbar handleQuestionPopup={toggleQuestionPopup} />
-      <Popup questionPopup={questionPopup} setQuestionPopup={setQuestionPopup} />
+      
+          <Navbar handleQuestionPopup={toggleQuestionPopup} />
+          <Popup questionPopup={questionPopup} setQuestionPopup={setQuestionPopup} />
+      
+  
     </div>
   );
 };
