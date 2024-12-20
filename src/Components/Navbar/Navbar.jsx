@@ -5,6 +5,8 @@ import Img1 from "../../assets/eng.webp";
 import Img2 from "../../assets/rw.png";
 import Img3 from "../../assets/question 1.png";
 import ProfileSidebar from "../Hero/ProfileSidebar";
+import ProgressBar from "../ProgressBar/ProgressBar";
+
 const Navbar = ({ handlequestionPopup }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState({
@@ -12,6 +14,8 @@ const Navbar = ({ handlequestionPopup }) => {
     img: Img1,
     name: "English",
   });
+
+  const [isProgressVisible, setIsProgressVisible] = useState(false);
 
   const dropdownRef = useRef(null);
 
@@ -34,6 +38,11 @@ const Navbar = ({ handlequestionPopup }) => {
     setIsDropdownOpen(false);
   };
 
+  const handleHomeClick = () => {
+    setIsProgressVisible(true);
+    setTimeout(() => setIsProgressVisible(false), 3000); // Hide after 3 seconds
+  };
+
   const languages = [
     { code: "Eng", img: Img1, name: "Engl" },
     { code: "Kiny", img: Img2, name: "Kiny" },
@@ -44,36 +53,36 @@ const Navbar = ({ handlequestionPopup }) => {
   );
 
   return (
-    <div className="flex h-screen ml-10 mb-10 ">
+    <div className="flex h-screen ml-10">
       {/* Sidebar Section */}
       <aside className="flex flex-col">
         {/* Title */}
-        <div className="p-8 bg-light mt-5">
+        <div className="bg-light mt-14">
           <a
             className="font-bold text-purple-600 text-2xl block text-center"
             href="#"
           >
-            CHORISTEDASHBOARD
+            CHORISTE DASHBOARD
           </a>
         </div>
         {/* ProfileSidebar */}
-        <div className="">
-         <ProfileSidebar />
+        <div>
+          <ProfileSidebar />
         </div>
       </aside>
 
       {/* Main Content Section */}
-      <div className="flex flex-col  flex-grow mr-16">
+      <div className="flex flex-col flex-grow mr-16">
         {/* Navigation Bar */}
-        <nav className="flex items-center justify-end  px-10 py-4">
+        <nav className="flex items-center justify-end px-10 py-4">
           <ul className="flex gap-14 items-center mt-5">
             <li className="nav-item">
-              <a
+              <button
                 className="nav-link bg-[#4361ee] py-3 px-4 text-white rounded-full flex items-center gap-4"
-                href="#Home"
+                onClick={handleHomeClick}
               >
                 <FontAwesomeIcon icon={faHouse} size="lg" /> Home
-              </a>
+              </button>
             </li>
             <li className="nav-item">
               <a
@@ -129,36 +138,47 @@ const Navbar = ({ handlequestionPopup }) => {
             </li>
           </ul>
         </nav>
+        <div className="mt-5">
+          {isProgressVisible && <ProgressBar />}
+        </div>
 
         {/* Content Section */}
-        <div className="flex-grow ">
+        <div className="flex-grow">
           {/* Additional content can go here */}
           <div className="flex-grow ml-16">
-             <h2 className="text-2xl font-bold mt-4 ">Presence Details</h2>
-             <div className="ml-3">
+            <h2 className="text-2xl font-bold">Presence Details</h2>
+            <div className="ml-3">
               <button className="px-4 py-2 mt-5 border border-purple-700 rounded-full text-purple-500">
                 Check Previous Date
               </button>
-              <button className="px-4 py-2 rounded-full border border-purple-700 text-purple-500 ml-5"> 
+              <button className="px-4 py-2 rounded-full border border-purple-700 text-purple-500 ml-5">
                 Attendance 63%
               </button>
               <button className="px-4 py-2 rounded-full border border-purple-700 text-white bg-purple-600 ml-5">
                 Choir Events
               </button>
-             </div>
-             <table className="h-60 w-full divide-y divide-gray-200 mt-5 border ">
-              <thead className="bg-gray-100  gap-10 ">
+            </div>
+            <table className="h-50 w-full mt-5 border rounded-md mb-20">
+              <thead className="bg-gray-300 gap-10">
                 <tr>
-                
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Date</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Time</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Reason</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">Punishment</th>
-                  <th className="px-10 py-3 ml-10 text-lef text-xs font-medium text-gray-700 uppercase tracking-wider">Actions</th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                    Date
+                  </th>
+                  <th className="px-6 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                    Time
+                  </th>
+                  <th className="px-6 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                    Reason
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                    Punishment
+                  </th>
+                  <th className="px-10 py-3 ml-10 text-left text-xs font-medium text-gray-700 uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
               </thead>
-              <tbody className="bg-white  ">
-              
+              <tbody className="bg-white">
                 {[
                   { date: "14/10/2024", reason: "On Time", punishment: "Good" },
                   { date: "15/10/2024", reason: "Late Arrival", punishment: "Neglect" },
@@ -169,25 +189,35 @@ const Navbar = ({ handlequestionPopup }) => {
                   { date: "20/10/2024", reason: "Late Arrival", punishment: "Neglect" },
                 ].map((record, index) => (
                   <tr key={index}>
-                    <td className="px-4 py-4  text-sm text-gray-500">{record.date}</td>
-                    <td className="px-8 py-4  text-sm text-gray-500">-</td>
-                    <td className="px-6 py-4  text-sm text-gray-500">
-                      <span className={
-                        record.reason === "On Time" ? "text-green-800" :
-                        record.reason === "Late Arrival" ? "text-yellow-400" : "text-red-600"
-                      }>
+                    <td className="px-4 py-2 text-sm text-gray-500">
+                      {record.date}
+                    </td>
+                    <td className="px-4 py-2 text-sm text-gray-500">-</td>
+                    <td className="px-6 py-3 text-sm text-gray-500">
+                      <span
+                        className={
+                          record.reason === "On Time"
+                            ? "text-green-800"
+                            : record.reason === "Late Arrival"
+                            ? "text-yellow-400"
+                            : "text-red-600"
+                        }
+                      >
                         {record.reason}
                       </span>
                     </td>
-                    <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{record.punishment}</td>
-                    <td className="px-8 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <button className="bg-[#4361ee] text-white px-4 py-2 mr-10 rounded-full">Claim</button>
+                    <td className="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                      {record.punishment}
+                    </td>
+                    <td className="px-8 py-3 whitespace-nowrap text-right text-sm font-medium">
+                      <button className="bg-[#4361ee] text-white px-4 py-2 mr-10 rounded-full">
+                        Claim
+                      </button>
                     </td>
                   </tr>
                 ))}
-            
               </tbody>
-             </table>
+            </table>
           </div>
         </div>
       </div>

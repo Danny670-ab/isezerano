@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import EditProfile from './EditProfile';
 import Img1 from '../../assets/shous1.png';
-import { IoCloseOutline } from 'react-icons/io5'; // Import the close icon
+import { IoCloseOutline } from 'react-icons/io5';
 
 const ProfileSidebar = () => {
   const [isEditing, setIsEditing] = useState(false); // State to toggle edit form visibility
+  const [showImg2, setShowImg2] = useState(false); // State to toggle Img2 visibility
 
   const handleEditClick = () => {
-    setIsEditing(true); // Only show the edit form (hide button)
+    setIsEditing(true); // Show the edit form
   };
 
   const handleSave = (updatedProfile) => {
@@ -16,18 +17,29 @@ const ProfileSidebar = () => {
   };
 
   const handleCloseEdit = () => {
-    setIsEditing(false); // Close the EditProfile form when the close icon is clicked
+    setIsEditing(false); // Close the EditProfile form
+  };
+
+  const handleImg2Click = () => {
+    setShowImg2(true); // Show Img2
+    setTimeout(() => {
+      setShowImg2(false); // Hide Img2 after 2 seconds
+    }, 2000); // 2-second display
   };
 
   return (
     <div
-      className={`bg-gradient-to-t from-purple-300 to-blue-500 w-72 rounded-2xl ml-10 text-white mt-8 transition-all duration-500 ${
-        isEditing ? 'h-auto pb-6' : 'h-80'
+      className={`bg-gradient-to-t from-purple-400 to-blue-700 w-80 rounded-2xl ml-10 text-white mt-8 transition-all duration-500 ${
+        isEditing ? 'h-auto' : 'h-80'
       }`}
     >
-      <div className="relative">
+      <div className="relative flex flex-col">
         {/* Profile Image */}
-        <img src={Img1} alt="" className="h-20 w-20 rounded-full mt-8 mx-auto" />
+        <img
+          src={Img1}
+          alt=""
+          className="h-20 w-20 mt-10 rounded-full mx-auto"
+        />
 
         {/* Close Icon positioned at the top-right */}
         {isEditing && (
@@ -40,7 +52,7 @@ const ProfileSidebar = () => {
         )}
       </div>
 
-      <div className="flex ml-7 mt-2 text-2xl font-bold">Kamariza Esther</div>
+      <div className="flex ml-7 mt-4 text-3xl font-bold">Kamariza Esther</div>
       <div>
         <ul>
           <li className="ml-7">ISEZERANO Choir</li>
@@ -51,7 +63,7 @@ const ProfileSidebar = () => {
         {/* Show "Click Edit Profile" button only when not editing */}
         {!isEditing && (
           <button
-            className="bg-purple-200 mt-14 h-10 w-36 flex items-center justify-center ml-16 rounded-t-2xl"
+            className="bg-purple-300 mt-10 h-9 w-36 flex items-center justify-center ml-24 rounded-t-2xl"
             onClick={handleEditClick}
           >
             Click Edit Profile
@@ -59,20 +71,27 @@ const ProfileSidebar = () => {
         )}
 
         {isEditing && (
-          <div className="mt-6 px-4">
+          <div className="mt- px-4">
             <EditProfile
               onClose={handleCloseEdit} // Allow closing from within the form
               defaultValues={{
                 name: 'Kamariza Esther',
                 location: 'Kigali-Rwanda',
                 phone: '0788-288-122',
-                email: 'kamariza@example.com',
               }}
               onSave={handleSave}
+              onImg2Click={handleImg2Click} // Pass Img2 click handler
             />
           </div>
         )}
       </div>
+
+      {/* Img2 Overlay */}
+      {showImg2 && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <img src={Img2} alt="Overlay Image" className="rounded w-80" />
+        </div>
+      )}
     </div>
   );
 };
