@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import Navbar from './Components/Navbar/Navbar';
-import Popup from './Components/Popup/Popup';
+import React, { useState } from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import Popup from "./Components/Popup/Popup";
 
 const App = () => {
-  const [questionPopup, setQuestionPopup] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const handleHomeClick = () => {
-    setShowComponents(false); // Hide components when Home button is clicked
-  };
-
-  const toggleQuestionPopup = () => {
-    setQuestionPopup(!questionPopup);
-    console.log("Popup Toggled:", questionPopup);
+  const toggleIsPopupOpen = () => {
+    setIsPopupOpen((prev) => {
+      const newState = !prev;
+      console.log("Popup Toggled:", newState); // Debug log
+      return newState;
+    });
   };
 
   return (
     <div>
-      
-          <Navbar handleQuestionPopup={toggleQuestionPopup} />
-          <Popup questionPopup={questionPopup} setQuestionPopup={setQuestionPopup} />
-      
-  
+      <Navbar handleIsPopupOpen={toggleIsPopupOpen} />
+      <Popup isPopupOpen={isPopupOpen} setIsPopupOpen={setIsPopupOpen} />
     </div>
   );
 };
 
 export default App;
+
+
+
+

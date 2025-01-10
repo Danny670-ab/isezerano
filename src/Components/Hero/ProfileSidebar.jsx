@@ -4,27 +4,27 @@ import Img1 from '../../assets/shous1.png';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const ProfileSidebar = () => {
-  const [isEditing, setIsEditing] = useState(false); // State to toggle edit form visibility
-  const [showImg2, setShowImg2] = useState(false); // State to toggle Img2 visibility
+  const [isEditing, setIsEditing] = useState(false); 
+  const [showImg2, setShowImg2] = useState(false); 
 
   const handleEditClick = () => {
-    setIsEditing(true); // Show the edit form
+    setIsEditing(true); 
   };
 
   const handleSave = (updatedProfile) => {
-    console.log('Updated Profile:', updatedProfile); // Log updated data (replace with actual logic)
-    setIsEditing(false); // Close the edit form after saving
+    console.log('Updated Profile:', updatedProfile); 
+    setIsEditing(false); 
   };
 
   const handleCloseEdit = () => {
-    setIsEditing(false); // Close the EditProfile form
+    setIsEditing(false); 
   };
 
   const handleImg2Click = () => {
-    setShowImg2(true); // Show Img2
+    setShowImg2(true); 
     setTimeout(() => {
-      setShowImg2(false); // Hide Img2 after 2 seconds
-    }, 2000); // 2-second display
+      setShowImg2(false); 
+    }, 2000); 
   };
 
   return (
@@ -32,6 +32,7 @@ const ProfileSidebar = () => {
       className={`bg-gradient-to-t from-purple-400 to-blue-700 w-80 rounded-2xl ml-10 text-white mt-8 transition-all duration-500 ${
         isEditing ? 'h-auto' : 'h-80'
       }`}
+      style={{backgroundColor: "linear-gradient-to-t from-#3D5AF1 to-b"}}
     >
       <div className="relative flex flex-col">
         {/* Profile Image */}
@@ -73,14 +74,14 @@ const ProfileSidebar = () => {
         {isEditing && (
           <div className="mt- px-4">
             <EditProfile
-              onClose={handleCloseEdit} // Allow closing from within the form
+              onClose={handleCloseEdit} 
               defaultValues={{
                 name: 'Kamariza Esther',
                 location: 'Kigali-Rwanda',
                 phone: '0788-288-122',
               }}
               onSave={handleSave}
-              onImg2Click={handleImg2Click} // Pass Img2 click handler
+              onImg2Click={handleImg2Click} 
             />
           </div>
         )}
