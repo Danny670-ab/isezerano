@@ -4,7 +4,7 @@ import Img1 from '../../assets/shous1.png';
 import { IoCloseOutline } from 'react-icons/io5';
 
 const ProfileSidebar = () => {
-  const [isEditing, setIsEditing] = useState(false); 
+  const [isEditing, setIsEditing] = useState(false);
   const [showImg2, setShowImg2] = useState(false); 
 
   const handleEditClick = () => {

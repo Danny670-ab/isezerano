@@ -3,8 +3,9 @@ import Navbar from "./Components/Navbar/Navbar";
 import Popup from "./Components/Popup/Popup";
 
 const App = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);  
 
+  
   const toggleIsPopupOpen = () => {
     setIsPopupOpen((prev) => {
       const newState = !prev;
